@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../components/Home';
 import AllInvoices from '../components/invoices/AllInvoices';
-import CreateInvoice from '../components/invoices/CreateInvoice';
+import CreateInvoice from '../components/invoices/create/CreateInvoice';
 import EditInvoice from '../components/invoices/EditInvoice';
 import InvoiceDetail from '../components/invoices/InvoiceDetail';
 
