@@ -10,7 +10,7 @@ const InvoiceInfoForm = ({control, errors}) => {
           Invoive info:
         </Text>
 
-        <Item error={!!errors.invoice_number}>
+        <Item error={!!errors.invoice?.number}>
           <Controller
             control={control}
             rules={{
@@ -24,13 +24,13 @@ const InvoiceInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="invoice_number"
+            name="invoice.number"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.invoice_number?.message} />
+        <InputError message={errors.invoice?.number?.message} />
 
-        <Item error={!!errors.issue}>
+        <Item error={!!errors.invoice?.issue}>
           <Controller
             control={control}
             rules={{
@@ -44,13 +44,13 @@ const InvoiceInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="issue"
+            name="invoice.issue"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.issue?.message} />
+        <InputError message={errors.invoice?.issue?.message} />
 
-        <Item error={!!errors.order_number}>
+        <Item error={!!errors.invoice?.order_number}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -61,13 +61,13 @@ const InvoiceInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="order_number"
+            name="invoice.order_number"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.order_number?.message} />
+        <InputError message={errors.invoice?.order_number?.message} />
 
-        <Item error={!!errors.tech}>
+        <Item error={!!errors.invoice?.tech}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -78,11 +78,11 @@ const InvoiceInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="tech"
+            name="invoice.tech"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.tech?.message} />
+        <InputError message={errors.invoice?.tech?.message} />
       </Form>
     </View>
   );

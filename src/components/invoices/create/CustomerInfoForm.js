@@ -10,7 +10,7 @@ const CustomerInfo = ({control, errors}) => {
         <Text style={{fontSize: 17, fontFamily: 'sans-serif-medium'}}>
           Customer info:
         </Text>
-        <Item error={!!errors.customerName}>
+        <Item error={!!errors.customer?.name}>
           <Controller
             control={control}
             rules={{
@@ -24,11 +24,11 @@ const CustomerInfo = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="customerName"
+            name="customer.name"
           />
         </Item>
-        <InputError message={errors.customerName?.message} />
-        <Item error={!!errors.customerAddress}>
+        <InputError message={errors.customer?.name?.message} />
+        <Item error={!!errors.customer?.address}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -39,11 +39,11 @@ const CustomerInfo = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="customerAddress"
+            name="customer.address"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.customerAddress?.message} />
+        <InputError message={errors.customer?.address?.message} />
       </Form>
     </View>
   );

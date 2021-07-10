@@ -9,7 +9,7 @@ const VehicleInfoForm = ({control, errors}) => {
         <Text style={{fontSize: 17, fontFamily: 'sans-serif-medium'}}>
           Vehicle info:
         </Text>
-        <Item error={!!errors.make}>
+        <Item error={!!errors.vehicle?.make}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -20,13 +20,13 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="make"
+            name="vehicle.make"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.make?.message} />
+        <InputError message={errors.vehicle?.make?.message} />
 
-        <Item error={!!errors.model}>
+        <Item error={!!errors.vehicle?.model}>
           <Controller
             control={control}
             rules={{
@@ -40,13 +40,13 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="model"
+            name="vehicle.model"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.model?.message} />
+        <InputError message={errors.vehicle?.model?.message} />
 
-        <Item error={!!errors.color}>
+        <Item error={!!errors.vehicle?.color}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -57,13 +57,13 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="color"
+            name="vehicle.color"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.color?.message} />
+        <InputError message={errors.vehicle?.color?.message} />
 
-        <Item error={!!errors.odometer}>
+        <Item error={!!errors.vehicle?.odometer}>
           <Controller
             control={control}
             rules={{
@@ -77,13 +77,13 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="odometer"
+            name="vehicle.odometer"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.odometer?.message} />
+        <InputError message={errors.vehicle?.odometer?.message} />
 
-        <Item error={!!errors.vin}>
+        <Item error={!!errors.vehicle?.vin}>
           <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
@@ -94,13 +94,13 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="vin"
+            name="vehicle.vin"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.vin?.message} />
+        <InputError message={errors.vehicle?.vin?.message} />
 
-        <Item error={!!errors.plate}>
+        <Item error={!!errors.vehicle?.plate}>
           <Controller
             control={control}
             rules={{
@@ -114,11 +114,11 @@ const VehicleInfoForm = ({control, errors}) => {
                 value={value}
               />
             )}
-            name="plate"
+            name="vehicle.plate"
             defaultValue=""
           />
         </Item>
-        <InputError message={errors.plate?.message} />
+        <InputError message={errors.vehicle?.plate?.message} />
       </Form>
     </View>
   );
