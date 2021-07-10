@@ -1,3 +1,4 @@
+import {Invoice} from '../../models/Invoice';
 import {ADD_NEW_INVOICE, CLEAR_INVOICES, INIT} from './types';
 
 export const init = data => ({
@@ -5,9 +6,9 @@ export const init = data => ({
   payload: data,
 });
 
-export const addNewInvoice = data => ({
+export const addNewInvoice = (invoice: Invoice) => ({
   type: ADD_NEW_INVOICE,
-  payload: data,
+  invoice,
 });
 
 export const clearInvoices = data => ({

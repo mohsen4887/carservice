@@ -18,8 +18,10 @@ import InvoiceInfoForm from './InvoiceInfoForm';
 import VehicleInfoForm from './VehicleInfoForm';
 import CustomerInfo from './CustomerInfoForm';
 import {useForm} from 'react-hook-form';
+import {addNewInvoice} from '../../../redux/actions';
+import {connect} from 'react-redux';
 
-const CreateInvoice = ({navigation}) => {
+const CreateInvoice = ({navigation, addNewInvoice}) => {
   const [items, setItems] = useState([]);
   const {
     reset,
@@ -36,7 +38,13 @@ const CreateInvoice = ({navigation}) => {
   };
 
   const submitInvoice = data => {
-    console.log(data);
+    const invoice = {
+      ...data,
+      items,
+    };
+    addNewInvoice(invoice);
+    setItems([]);
+    reset();
   };
 
   React.useLayoutEffect(() => {
@@ -72,4 +80,11 @@ const CreateInvoice = ({navigation}) => {
   );
 };
 
-export default CreateInvoice;
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewInvoice: data => {
+      dispatch(addNewInvoice(data));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(CreateInvoice);

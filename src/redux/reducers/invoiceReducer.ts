@@ -1,11 +1,11 @@
 import {ADD_NEW_INVOICE, CLEAR_INVOICES} from '../actions/types';
 
 const defaultValue = [];
-export default invoices = (state = defaultValue, action) => {
+const invoices = (state = defaultValue, action) => {
   switch (action.type) {
     case ADD_NEW_INVOICE: {
-      if (action.payload) {
-        return [...state, action.payload];
+      if (action.invoice) {
+        return [...state, action.invoice];
       }
     }
     case CLEAR_INVOICES: {
@@ -14,3 +14,4 @@ export default invoices = (state = defaultValue, action) => {
   }
   return state;
 };
+export default invoices;
