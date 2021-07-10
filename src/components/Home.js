@@ -1,45 +1,68 @@
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Header,
+  Text,
+  View,
+} from 'native-base';
 import React from 'react';
-import {View, Text, Button} from 'native-base';
-import {connect} from 'react-redux';
-import {addNewInvoice, clearInvoices} from '../redux/actions';
-const Home = props => {
-  console.log('props', props);
-  const save = () => {
-    const invoice = {
-      name: 'Mohsen',
-      code: '111',
-      price: 25000,
-    };
-    props.addNewInvoice(invoice);
-  };
+import {TouchableOpacity} from 'react-native';
+const Home = ({navigation}) => {
   return (
-    <View>
-      <Text>Home</Text>
-      <Button onPress={() => props.navigation.navigate('AllInvoices')}>
-        <Text>Go To About</Text>
-      </Button>
-      <Button onPress={() => save()}>
-        <Text>Add invoice</Text>
-      </Button>
-      <Button onPress={() => props.clean()}>
-        <Text>Clean</Text>
-      </Button>
-    </View>
+    <Container>
+      <Content padder>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 10,
+            paddingBottom: 20,
+            marginBottom: 20,
+            borderBottomColor: '#eee',
+            borderBottomWidth: 2,
+          }}>
+          <Text style={{fontSize: 20}}>Car Service</Text>
+        </View>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+          }}>
+          <HomeButton
+            title="Invoices"
+            onPress={() => navigation.navigate('Invoices')}
+          />
+          <HomeButton
+            title="Customers"
+            onPress={() => console.log('Go to customers')}
+          />
+        </View>
+      </Content>
+    </Container>
   );
 };
-const mapStateToProps = state => {
-  return {
-    invoices: state.invoices,
-  };
+export default Home;
+
+const HomeButton = ({onPress, title}) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View
+        style={{
+          minWidth: 150,
+          minHeight: 150,
+          margin: 10,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#eee',
+          borderRadius: 10,
+          elevation: 2,
+        }}>
+        <Text>{title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    addNewInvoice: data => {
-      dispatch(addNewInvoice(data));
-    },
-    clean: () => {
-      dispatch(clearInvoices());
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
