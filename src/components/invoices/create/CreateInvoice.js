@@ -21,15 +21,28 @@ import {useForm} from 'react-hook-form';
 
 const CreateInvoice = ({navigation}) => {
   const [items, setItems] = useState([]);
+  const {
+    reset,
+    control,
+    handleSubmit,
+    formState: {isSubmitted, errors},
+  } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+  });
 
   const onAddItemPress = data => {
     setItems([...items, data]);
   };
 
+  const submitInvoice = data => {
+    console.log(data);
+  };
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button dark transparent onPress={() => alert()}>
+        <Button dark transparent onPress={() => handleSubmit(submitInvoice)()}>
           <Text>Save</Text>
         </Button>
       ),
@@ -39,7 +52,7 @@ const CreateInvoice = ({navigation}) => {
   return (
     <Container>
       <Content padder>
-        <CustomerInfo />
+        <CustomerInfo control={control} errors={errors} />
         <VehicleInfoForm />
         <InvoiceInfoForm />
         <AddInvoiceItemForm onAddItemPress={onAddItemPress} />
