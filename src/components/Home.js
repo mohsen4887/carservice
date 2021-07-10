@@ -49,7 +49,7 @@ export default Home;
 
 const HomeButton = ({onPress, title}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View
         style={{
           minWidth: 150,
@@ -59,7 +59,6 @@ const HomeButton = ({onPress, title}) => {
           justifyContent: 'center',
           backgroundColor: '#eee',
           borderRadius: 10,
-          elevation: 2,
         }}>
         <Text>{title}</Text>
       </View>

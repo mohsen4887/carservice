@@ -22,29 +22,39 @@ import {addNewInvoice} from '../../../redux/actions';
 import {connect} from 'react-redux';
 
 const CreateInvoice = ({navigation, addNewInvoice}) => {
-  const [items, setItems] = useState([]);
   const {
     reset,
     control,
     handleSubmit,
+    register,
+    setValue,
+    watch,
     formState: {isSubmitted, errors},
   } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+    defaultValues: {
+      items: [],
+    },
   });
 
   const onAddItemPress = data => {
-    setItems([...items, data]);
+    let items = watch('items');
+    items = [...items, data];
+    setValue('items', items, {
+      shouldValidate: true,
+    });
   };
 
   const submitInvoice = data => {
+    const items = watch('items');
     const invoice = {
       ...data,
-      items,
+      items: [...items],
     };
     addNewInvoice(invoice);
-    setItems([]);
     reset();
+    navigation.goBack();
   };
 
   React.useLayoutEffect(() => {
@@ -57,6 +67,10 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
     });
   }, [navigation]);
 
+  useEffect(() => {
+    register('items');
+  }, []);
+
   return (
     <Container>
       <Content padder>
@@ -66,7 +80,7 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
         <AddInvoiceItemForm onAddItemPress={onAddItemPress} />
 
         <List>
-          {items.map((item, index) => {
+          {watch('items').map((item, index) => {
             return (
               <InvoiceItem
                 key={`item-${index}`}

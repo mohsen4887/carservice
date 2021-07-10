@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Container, Content, Button} from 'native-base';
 import {connect} from 'react-redux';
+import InvoiceCard from './InvoiceCard';
 const AllInvoices = ({navigation, invoices}) => {
   console.log(invoices);
 
@@ -18,9 +19,12 @@ const AllInvoices = ({navigation, invoices}) => {
   }, [navigation]);
 
   const renderInvoices = () => {
+    console.log(invoices);
     if (Array.isArray(invoices)) {
       if (invoices.length > 0) {
-        return <Text>List</Text>;
+        return invoices.map((invoice, index) => {
+          return <InvoiceCard item={invoice} key={`invoice-${index}`} />;
+        });
       }
     }
     return (
