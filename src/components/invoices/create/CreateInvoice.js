@@ -53,8 +53,8 @@ const CreateInvoice = ({navigation}) => {
     <Container>
       <Content padder>
         <CustomerInfo control={control} errors={errors} />
-        <VehicleInfoForm />
-        <InvoiceInfoForm />
+        <VehicleInfoForm control={control} errors={errors} />
+        <InvoiceInfoForm control={control} errors={errors} />
         <AddInvoiceItemForm onAddItemPress={onAddItemPress} />
 
         <List>
