@@ -12,7 +12,11 @@ const Stack = createStackNavigator();
 const InvoicesStack = () => {
   return (
     <Stack.Navigator initialRouteName="AllInvoices">
-      <Stack.Screen name="AllInvoices" component={AllInvoices} />
+      <Stack.Screen
+        options={{title: 'Invoices'}}
+        name="AllInvoices"
+        component={AllInvoices}
+      />
       <Stack.Screen
         options={{title: 'Create Invoice'}}
         name="CreateInvoice"
@@ -30,13 +34,6 @@ const Navigation = () => {
       <Stack.Navigator initialRouteName="Home" headerMode="none">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Invoices" component={InvoicesStack} />
-        <Stack.Screen
-          options={{title: 'Create Invoice'}}
-          name="CreateInvoice"
-          component={CreateInvoice}
-        />
-        <Stack.Screen name="EditInvoice" component={EditInvoice} />
-        <Stack.Screen name="InvoiceDetail" component={InvoiceDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
