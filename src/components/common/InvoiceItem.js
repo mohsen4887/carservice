@@ -20,11 +20,17 @@ const InvoiceItem = ({item}) => {
           <View>
             <Text>{item.title}</Text>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{marginRight: 10, fontSize: 13, color: '#666'}}>
-                {item.unitPrice}$
+              <Text style={{marginRight: 10, fontSize: 13, color: '#222'}}>
+                Unit price:{' '}
+                <Text style={{color: '#666', fontSize: 13}}>
+                  ${item.unitPrice}
+                </Text>
               </Text>
-              <Text style={{fontSize: 13, color: '#666'}}>
-                {item.totalPrice}$
+              <Text style={{fontSize: 13, color: '#222'}}>
+                Total price:{' '}
+                <Text style={{color: '#666', fontSize: 13}}>
+                  ${item.totalPrice}
+                </Text>
               </Text>
             </View>
           </View>

@@ -1,6 +1,9 @@
-import {Text, View} from 'native-base';
+import {useNavigation} from '@react-navigation/native';
+import {Icon, Text, View} from 'native-base';
 import React from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const InvoiceCard = ({item}) => {
+  const navigation = useNavigation();
   const getTotalPrice = () => {
     let total = 0.0;
     if (Array.isArray(item.items)) {
@@ -11,20 +14,33 @@ const InvoiceCard = ({item}) => {
     return total;
   };
   return (
-    <View
-      style={{
-        padding: 10,
-        borderRadius: 5,
-        backgroundColor: 'white',
-        elevation: 3,
-        marginBottom: 20,
-      }}>
-      <View>
-        <Text>Invoice No.: {item.invoice.number}</Text>
-        <Text>Issue: {item.invoice.issue}</Text>
-        <Text>price: {getTotalPrice()}</Text>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() =>
+        navigation.navigate('InvoiceDetail', {
+          invoice: item,
+        })
+      }>
+      <View
+        style={{
+          padding: 10,
+          borderRadius: 5,
+          backgroundColor: 'white',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          marginBottom: 20,
+          borderWidth: 1,
+          borderColor: '#ddd',
+        }}>
+        <View>
+          <Text>Invoice No.: {item.invoice.number}</Text>
+          <Text>Issue: {item.invoice.issue}</Text>
+          <Text>price: {getTotalPrice()}</Text>
+        </View>
+        <Icon type="Feather" name="chevron-right" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

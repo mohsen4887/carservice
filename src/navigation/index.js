@@ -22,8 +22,16 @@ const InvoicesStack = () => {
         name="CreateInvoice"
         component={CreateInvoice}
       />
-      <Stack.Screen name="EditInvoice" component={EditInvoice} />
-      <Stack.Screen name="InvoiceDetail" component={InvoiceDetail} />
+      <Stack.Screen
+        options={{title: 'Edit invoice'}}
+        name="EditInvoice"
+        component={EditInvoice}
+      />
+      <Stack.Screen
+        options={{title: 'Invoice detail'}}
+        name="InvoiceDetail"
+        component={InvoiceDetail}
+      />
     </Stack.Navigator>
   );
 };
