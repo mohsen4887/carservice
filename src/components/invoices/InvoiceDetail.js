@@ -14,6 +14,7 @@ import {
 } from 'native-base';
 import {Alert} from 'react-native';
 import InvoiceItem from '../common/InvoiceItem';
+import moment from 'moment';
 const InvoiceDetail = ({route, navigation}) => {
   const {invoice} = route.params;
   const renderItems = () => {
@@ -38,6 +39,14 @@ const InvoiceDetail = ({route, navigation}) => {
       },
       {text: 'Remove it', onPress: () => console.log('OK Pressed')},
     ]);
+  };
+  const getDate = () => {
+    const date = invoice.invoice.date;
+    if (date) {
+      return moment(date).format('L');
+    } else {
+      return '---';
+    }
   };
   return (
     <Container>
@@ -172,6 +181,15 @@ const InvoiceDetail = ({route, navigation}) => {
                 <Text style={{color: '#222'}}>
                   Tech:{' '}
                   <Text style={{color: '#666'}}>{invoice.invoice?.tech}</Text>
+                </Text>
+              </View>
+            </ListItem>
+          )}
+          {!!invoice.invoice?.date && (
+            <ListItem>
+              <View>
+                <Text style={{color: '#222'}}>
+                  Date: <Text style={{color: '#666'}}>{getDate()}</Text>
                 </Text>
               </View>
             </ListItem>
