@@ -1,26 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {
-  Container,
-  ListItem,
-  List,
-  Content,
-  Form,
-  Button,
-  Icon,
-  Item,
-  Input,
-  View,
-  Text,
-} from 'native-base';
+import {Button, Container, Content, List, Text} from 'native-base';
+import React, {useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {connect} from 'react-redux';
+import {addNewInvoice} from '../../../redux/actions';
 import InvoiceItem from '../../common/InvoiceItem';
 import AddInvoiceItemForm from './AddInvoiceItemForm';
+import CustomerInfo from './CustomerInfoForm';
 import InvoiceInfoForm from './InvoiceInfoForm';
 import VehicleInfoForm from './VehicleInfoForm';
-import CustomerInfo from './CustomerInfoForm';
-import {useForm} from 'react-hook-form';
-import {addNewInvoice} from '../../../redux/actions';
-import {connect} from 'react-redux';
-import {guid} from '../../../utils/helper';
 
 const CreateInvoice = ({navigation, addNewInvoice}) => {
   const {
@@ -51,10 +38,9 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
   };
 
   const submitInvoice = data => {
-    const invoiceId = guid();
+    const items = watch('items');
     const invoice = {
       ...data,
-      id: guid(),
       items: [...items],
     };
     addNewInvoice(invoice);

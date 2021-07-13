@@ -1,5 +1,6 @@
 import {Invoice} from '../../models/Invoice';
 import {ADD_NEW_INVOICE, CLEAR_INVOICES, INIT} from './types';
+import {guid} from '../../utils/helper';
 
 export const init = data => ({
   type: INIT,
@@ -8,7 +9,10 @@ export const init = data => ({
 
 export const addNewInvoice = (invoice: Invoice) => ({
   type: ADD_NEW_INVOICE,
-  invoice,
+  invoice: {
+    id: guid(),
+    ...invoice,
+  },
 });
 
 export const clearInvoices = data => ({
