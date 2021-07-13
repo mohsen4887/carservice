@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -17,8 +17,8 @@ import InvoiceItem from '../common/InvoiceItem';
 import moment from 'moment';
 import {removeInvoice} from '../../redux/actions';
 import {connect} from 'react-redux';
-const InvoiceDetail = ({route, navigation, removeInvoice}) => {
-  const {invoice} = route.params;
+const InvoiceDetail = ({route, navigation, removeInvoice, invoices}) => {
+  const [invoice, setInvoice] = useState();
   const renderItems = () => {
     if (Array.isArray(invoice.items)) {
       return invoice.items.map((item, index) => {
@@ -56,6 +56,21 @@ const InvoiceDetail = ({route, navigation, removeInvoice}) => {
       return '---';
     }
   };
+
+  useEffect(() => {
+    const invoice_id = route.params.invoice?.id;
+    const selected_invoice = invoices.find(item => item.id == invoice_id);
+    if (!selected_invoice) {
+      navigation.goBack();
+    } else {
+      setInvoice(selected_invoice);
+    }
+  }, [invoices]);
+
+  if (!invoice) {
+    return <View></View>;
+  }
+
   return (
     <Container>
       <Content padder>
@@ -239,4 +254,10 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
-export default connect(null, mapDispatchToProps)(InvoiceDetail);
+
+const mapStateToProps = store => {
+  return {
+    invoices: store.invoices,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceDetail);

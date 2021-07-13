@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../components/Home';
 import AllInvoices from '../components/invoices/all/AllInvoices';
 import CreateInvoice from '../components/invoices/create/CreateInvoice';
-import EditInvoice from '../components/invoices/EditInvoice';
+import EditInvoice from '../components/invoices/edit/EditInvoice';
 import InvoiceDetail from '../components/invoices/InvoiceDetail';
 
 const Stack = createStackNavigator();
