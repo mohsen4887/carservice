@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+import moment from 'moment';
 import {Icon, Text, View} from 'native-base';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -12,6 +13,14 @@ const InvoiceCard = ({item}) => {
       }
     }
     return total;
+  };
+  const getDate = () => {
+    const date = item.invoice.date;
+    if (date) {
+      return moment(date).format('L');
+    } else {
+      return '---';
+    }
   };
   return (
     <TouchableOpacity
@@ -36,7 +45,8 @@ const InvoiceCard = ({item}) => {
         <View>
           <Text>Invoice No.: {item.invoice.number}</Text>
           <Text>Issue: {item.invoice.issue}</Text>
-          <Text>price: {getTotalPrice()}</Text>
+          <Text>Price: {getTotalPrice()}</Text>
+          <Text>Date: {getDate()}</Text>
         </View>
         <Icon type="Feather" name="chevron-right" />
       </View>
