@@ -35,6 +35,9 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
     reValidateMode: 'onChange',
     defaultValues: {
       items: [],
+      invoice: {
+        date: new Date(),
+      },
     },
   });
 
@@ -69,6 +72,9 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
 
   useEffect(() => {
     register('items');
+    register('invoice.date', {
+      required: 'This filed is required',
+    });
   }, []);
 
   return (
@@ -76,7 +82,12 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
       <Content padder>
         <CustomerInfo control={control} errors={errors} />
         <VehicleInfoForm control={control} errors={errors} />
-        <InvoiceInfoForm control={control} errors={errors} />
+        <InvoiceInfoForm
+          control={control}
+          errors={errors}
+          setValue={setValue}
+          watch={watch}
+        />
         <AddInvoiceItemForm onAddItemPress={onAddItemPress} />
 
         <List>

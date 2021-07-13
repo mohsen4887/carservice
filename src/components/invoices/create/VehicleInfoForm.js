@@ -71,6 +71,7 @@ const VehicleInfoForm = ({control, errors}) => {
             }}
             render={({field: {onChange, onBlur, value}}) => (
               <Input
+                keyboardType="number-pad"
                 placeholder="Odometer"
                 onBlur={onBlur}
                 onChangeText={onChange}
