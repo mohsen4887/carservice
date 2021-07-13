@@ -20,6 +20,7 @@ import CustomerInfo from './CustomerInfoForm';
 import {useForm} from 'react-hook-form';
 import {addNewInvoice} from '../../../redux/actions';
 import {connect} from 'react-redux';
+import {guid} from '../../../utils/helper';
 
 const CreateInvoice = ({navigation, addNewInvoice}) => {
   const {
@@ -50,9 +51,10 @@ const CreateInvoice = ({navigation, addNewInvoice}) => {
   };
 
   const submitInvoice = data => {
-    const items = watch('items');
+    const invoiceId = guid();
     const invoice = {
       ...data,
+      id: guid(),
       items: [...items],
     };
     addNewInvoice(invoice);
