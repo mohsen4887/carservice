@@ -15,7 +15,9 @@ import {
 import {Alert} from 'react-native';
 import InvoiceItem from '../common/InvoiceItem';
 import moment from 'moment';
-const InvoiceDetail = ({route, navigation}) => {
+import {removeInvoice} from '../../redux/actions';
+import {connect} from 'react-redux';
+const InvoiceDetail = ({route, navigation, removeInvoice}) => {
   const {invoice} = route.params;
   const renderItems = () => {
     if (Array.isArray(invoice.items)) {
@@ -37,7 +39,13 @@ const InvoiceDetail = ({route, navigation}) => {
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
-      {text: 'Remove it', onPress: () => console.log('OK Pressed')},
+      {
+        text: 'Remove it',
+        onPress: () => {
+          removeInvoice(invoice);
+          navigation.goBack();
+        },
+      },
     ]);
   };
   const getDate = () => {
@@ -224,4 +232,11 @@ const InvoiceDetail = ({route, navigation}) => {
   );
 };
 
-export default InvoiceDetail;
+const mapDispatchToProps = dispatch => {
+  return {
+    removeInvoice: invoice => {
+      dispatch(removeInvoice(invoice));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(InvoiceDetail);

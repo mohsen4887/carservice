@@ -1,5 +1,5 @@
 import {Invoice} from '../../models/Invoice';
-import {ADD_NEW_INVOICE, CLEAR_INVOICES, INIT} from './types';
+import {ADD_NEW_INVOICE, CLEAR_INVOICES, INIT, REMOVE_INVOICE} from './types';
 import {guid} from '../../utils/helper';
 
 export const init = data => ({
@@ -15,6 +15,11 @@ export const addNewInvoice = (invoice: Invoice) => ({
   },
 });
 
-export const clearInvoices = data => ({
+export const removeInvoice = (invoice: Invoice) => ({
+  type: REMOVE_INVOICE,
+  invoice,
+});
+
+export const clearInvoices = () => ({
   type: CLEAR_INVOICES,
 });
